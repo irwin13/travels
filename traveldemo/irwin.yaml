@@ -1,0 +1,70 @@
+server:
+  type: simple
+  maxThreads: 1024
+  minThreads: 8
+  maxQueuedRequests: 1024
+  applicationContextPath: /traveldemo
+  adminContextPath: /traveldemo-admin
+  connector:
+    type: http
+    port: 9700
+
+database:
+  # the name of your JDBC driver
+  driverClass: com.mysql.jdbc.Driver
+
+  # the username
+  user: traveldw
+
+  # the password
+  password: traveldw
+
+  # the JDBC URL
+  url: jdbc:mysql://localhost:3306/traveldw
+
+  # any properties specific to your JDBC driver:
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # the maximum amount of time to wait on an empty pool before throwing an exception
+  maxWaitForConnection: 1s
+
+  # the SQL query to run when validating a connection's liveness
+  validationQuery: "/* MyApplication Health Check */ SELECT 1"
+
+  # the minimum number of connections to keep open
+  minSize: 8
+
+  # the maximum number of connections to keep open
+  maxSize: 32
+
+  # whether or not idle connections should be validated
+  checkConnectionWhileIdle: false
+
+logging:
+
+  # Permit DEBUG, INFO, WARN and ERROR messages to be logged by appenders.
+  level: DEBUG
+
+  loggers:
+    io.dropwizard: DEBUG
+    org.eclipse.jetty: INFO
+    org.hibernate: INFO
+    org.apache.http: INFO
+
+  appenders:
+    # Log warnings and errors to stderr
+    - type: console
+      threshold: INFO
+      target: stdout
+      timeZone: Asia/Jakarta
+
+    # Log info, warnings and errors to our apps' main log.
+    # Rolled over daily and retained for 5 days.
+    - type: file
+      threshold: DEBUG
+      currentLogFilename: /home/irwin/app-logs/qpusat.log
+      archivedLogFilenamePattern: /home/irwin/app-logs/qpusat-%d.log.gz
+      archivedFileCount: 3
+      timeZone: Asia/Jakarta
