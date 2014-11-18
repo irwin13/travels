@@ -12,6 +12,7 @@ import traveldemo.hibernate.dao.AirlineTicketDao;
 import traveldemo.hibernate.dao.CityDao;
 import traveldemo.hibernate.dao.Test1Dao;
 import traveldemo.hibernate.entity.*;
+import traveldemo.resources.AirlineTicketResource;
 import traveldemo.resources.HomePageResource;
 import traveldemo.resources.Test1Resource;
 
@@ -63,5 +64,6 @@ public class TravelDemoApplication extends Application<TravelDemoConfiguration> 
 
         environment.jersey().register(new Test1Resource(test1Dao));
         environment.jersey().register(new HomePageResource(cityDao, airlineTicketDao));
+        environment.jersey().register(new AirlineTicketResource(airlineTicketDao, cityDao));
     }
 }

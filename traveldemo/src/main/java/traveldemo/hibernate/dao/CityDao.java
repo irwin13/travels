@@ -1,6 +1,7 @@
 package traveldemo.hibernate.dao;
 
 import io.dropwizard.hibernate.AbstractDAO;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import traveldemo.hibernate.entity.City;
 
@@ -17,5 +18,11 @@ public class CityDao extends AbstractDAO<City> {
 
     public List<City> getAll() {
         return list(namedQuery("city.getAll"));
+    }
+
+    public City getById(int id) {
+        Query query = namedQuery("city.getById");
+        query.setInteger("id", id);
+        return uniqueResult(query);
     }
 }

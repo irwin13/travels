@@ -62,35 +62,35 @@ body {
 	margin:2px;
 }
 .icon-orig{
-	background-image:url(../travel-icon2.png);
+	background-image:url(../png/travel-icon2.png);
 	background-repeat:no-repeat;
   	padding-left:40px;
 }
 .icon-dest{
-	background-image:url(../travel-icon1.png);
+	background-image:url(../png/travel-icon1.png);
 	background-repeat:no-repeat;
   	padding-left:40px;
 }
 .icon-cal{
-	background-image:url(../travel-icon-cal.png);
+	background-image:url(../png/travel-icon-cal.png);
 	background-repeat:no-repeat;
   	padding-left:40px;
 }
 .icon-adult{
 	width:70px;
-	background-image:url(../travel-icon-adult.png);
+	background-image:url(../png/travel-icon-adult.png);
 	background-repeat:no-repeat;
   	padding-left:40px;
 }
 .icon-teen{
 	width:70px;
-	background-image:url(../travel-icon-teen.png);
+	background-image:url(../png/travel-icon-teen.png);
 	background-repeat:no-repeat;
   	padding-left:40px;
 }
 .icon-baby{
 	width:70px;
-	background-image:url(../travel-icon-baby.png);
+	background-image:url(../png/travel-icon-baby.png);
 	background-repeat:no-repeat;
   	padding-left:40px;
 }	
@@ -98,7 +98,7 @@ body {
 	width:226px;
 	height:34px;
 	border:none;
-	background-image:url(../travel-icon-find.png);
+	background-image:url(../png/travel-icon-find.png);
 	background-repeat:no-repeat;
 	background-color:#e74c3c;
   	padding-left:40px;

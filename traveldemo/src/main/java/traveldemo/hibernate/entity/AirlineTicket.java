@@ -12,9 +12,7 @@ import java.io.Serializable;
 @Table(name = "airline_ticket")
 @NamedQueries({
         @NamedQuery(name = "airlineTicket.getAll",
-                query = "SELECT a FROM AirlineTicket a"),
-        @NamedQuery(name = "airlineTicket.filterHomePage",
-                query = "SELECT a FROM AirlineTicket a WHERE a.price = :price ")
+                query = "SELECT a FROM AirlineTicket a")
 })
 public class AirlineTicket implements Serializable {
 
