@@ -56,42 +56,48 @@ body {
 .input-text{
 	background:#D7D7D7;
 	border:none;
-	height:34px;
-	padding:15px;
+	height:40px;
+	padding:5px;
 	width:100%;
 	margin:2px;
 }
 .icon-orig{
 	background-image:url(../png/travel-icon2.png);
 	background-repeat:no-repeat;
+    position: center;
   	padding-left:40px;
 }
 .icon-dest{
 	background-image:url(../png/travel-icon1.png);
 	background-repeat:no-repeat;
+	position: center;
   	padding-left:40px;
 }
 .icon-cal{
 	background-image:url(../png/travel-icon-cal.png);
 	background-repeat:no-repeat;
+	position: center;
   	padding-left:40px;
 }
 .icon-adult{
 	width:70px;
 	background-image:url(../png/travel-icon-adult.png);
 	background-repeat:no-repeat;
+	position: center;
   	padding-left:40px;
 }
 .icon-teen{
 	width:70px;
 	background-image:url(../png/travel-icon-teen.png);
 	background-repeat:no-repeat;
+	position: center;
   	padding-left:40px;
 }
 .icon-baby{
 	width:70px;
 	background-image:url(../png/travel-icon-baby.png);
 	background-repeat:no-repeat;
+	position: center;
   	padding-left:40px;
 }	
 .search-button{

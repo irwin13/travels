@@ -10,6 +10,7 @@
         <!-- Bootstrap -->
         <link href="./css/bootstrap.min.css" rel="stylesheet">
         <link href="./css/trafun.css" rel="stylesheet">
+        <link href="./css/jquery-ui-1.10.2.custom-southstreet.min.css" rel="stylesheet">
     </head>
     <body>
         <div class="container full">
@@ -31,16 +32,32 @@
                         <div>
                             <form action="#" name="searchForm" id="searchForm" onkeypress="return event.keyCode != 13;">
                                 <div class="col-md-3">
+                                    <select id="fromCity" name="fromCity" class="input-text icon-orig">
+                                        <option value="">Kota Asal</option>
+                                        <#list cityList as city>
+                                        <option value="${city.id}">${city.cityName}</option>
+                                        </#list>
+                                    </select>
+                                    <select id="destinationCity" name="destinationCity"class="input-text icon-dest">
+                                        <option value="">Kota Tujuan</option>
+                                        <#list cityList as city>
+                                        <option value="${city.id}">${city.cityName}</option>
+                                        </#list>
+                                    </select>
+                                    <!--
                                     <input class="input-text icon-orig" type="text" name="fromCity" id="fromCity"
                                            placeholder="kota asal" />
                                     <input class="input-text icon-dest" type="text" name="destinationCity" id="destinationCity"
                                            placeholder="kota tujuan" />
+                                    -->
                                 </div>
                                 <div class="col-md-3">
                                     <input class="input-text icon-cal" type="text" name="landingDate"
                                            id="landingDate" placeholder="tanggal berangkat" />
+                                    <!--
                                     <input class="input-text icon-cal" type="text"
                                            name="arrivalDate" id="arrivalDate" placeholder="tanggal pulang" />
+                                    -->
                                 </div>
                                 <div class="col-md-3">
                                     <input class="input-text icon-adult" type="text" placeholder="1">
@@ -73,7 +90,52 @@
         <script type="text/javascript" src="./js/bootstrap.min.js"></script>
         <script>
             function doSearch() {
-                alert('searching....');
+                jQuery.ajax({
+                    type: "GET",
+                    url: './airlineTicket/filter',
+                    dataType: "text",
+                    data : $('#searchForm').serialize(),
+                    success: function(data, textStatus) {
+                        var htmlContent;
+                        htmlContent = "<table class='table' width='90%'>";
+                        htmlContent += "<thead>";
+                        htmlContent += "<tr>";
+                        htmlContent += "<th>#</th>";
+                        htmlContent += "<th>Kota Asal</th>";
+                        htmlContent += "<th>Kota Tujuan</th>";
+                        htmlContent += "<th>Tanggal Berangkat</th>";
+                        htmlContent += "<th>Harga</th>";
+                        htmlContent += "</tr>";
+                        htmlContent += "</thead>";
+                        htmlContent += "<tbody>";
+
+                        $.each($.parseJSON(data), function(idx, obj) {
+                            htmlContent += "<tr>";
+                            htmlContent += "<td>" + (idx + 1) + "</td>";
+                            htmlContent += "<td>" + obj.fromCity.cityName + "</td>";
+                            htmlContent += "<td>" + obj.destinationCity.cityName + "</td>";
+                            var date = new Date(obj.landingDate);
+                            var year = date.getFullYear();
+                            var month = date.getMonth() + 1;
+                            var day = date.getDate();
+
+                            htmlContent += "<td>" + day + "-" + month + "-" + year + "</td>";
+                            htmlContent += "<td>" + obj.price + "</td>";
+                            htmlContent += "</tr>";
+                        });
+
+                        htmlContent += "</tbody>";
+                        htmlContent += "</table>";
+
+                        $('#ticketContent').html(htmlContent);
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        var html = textStatus + " " + errorThrown;
+                        $('#ticketContent').html(html);
+                    }
+
+                });
+
             }
 
             jQuery.ajax({
@@ -89,6 +151,8 @@
                     htmlContent += "<th>#</th>";
                     htmlContent += "<th>Kota Asal</th>";
                     htmlContent += "<th>Kota Tujuan</th>";
+                    htmlContent += "<th>Tanggal Berangkat</th>";
+                    htmlContent += "<th>Harga</th>";
                     htmlContent += "</tr>";
                     htmlContent += "</thead>";
                     htmlContent += "<tbody>";
@@ -98,6 +162,14 @@
                         htmlContent += "<td>" + (idx + 1) + "</td>";
                         htmlContent += "<td>" + obj.fromCity.cityName + "</td>";
                         htmlContent += "<td>" + obj.destinationCity.cityName + "</td>";
+
+                        var date = new Date(obj.landingDate);
+                        var year = date.getFullYear();
+                        var month = date.getMonth() + 1;
+                        var day = date.getDate();
+
+                        htmlContent += "<td>" + day + "-" + month + "-" + year + "</td>";
+                        htmlContent += "<td>" + obj.price + "</td>";
                         htmlContent += "</tr>";
                     });
 
@@ -111,6 +183,17 @@
                     $('#ticketContent').html(html);
                 }
 
+            });
+
+            var d = new Date();
+            var thisYear = d.getFullYear();
+
+            $( "#landingDate" ).datepicker({
+                dateFormat: 'dd-mm-yy',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1900:" + thisYear,
+                showOptions: { direction: "down" }
             });
 
         </script>

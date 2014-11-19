@@ -14,13 +14,13 @@ database:
   driverClass: com.mysql.jdbc.Driver
 
   # the username
-  user: traveldw
+  user: root
 
   # the password
-  password: traveldw
+  password: root
 
   # the JDBC URL
-  url: jdbc:mysql://localhost:3306/traveldw
+  url: jdbc:mysql://192.168.40.128:3306/traveldw
 
   # any properties specific to your JDBC driver:
   properties:

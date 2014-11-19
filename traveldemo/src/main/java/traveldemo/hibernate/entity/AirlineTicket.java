@@ -1,9 +1,10 @@
 package traveldemo.hibernate.entity;
 
-import org.joda.time.DateTime;
+import com.google.common.base.Objects;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by irwin on 11/16/14.
@@ -36,16 +37,20 @@ public class AirlineTicket implements Serializable {
     private int price;
 
     @Column(name = "landing_date")
-    private DateTime landingDate;
+    @Temporal(TemporalType.DATE)
+    private Date landingDate;
 
     @Column(name = "landing_time")
-    private DateTime landingTime;
+    @Temporal(TemporalType.TIME)
+    private Date landingTime;
 
     @Column(name = "arrival_date")
-    private DateTime arrivalDate;
+    @Temporal(TemporalType.DATE)
+    private Date arrivalDate;
 
     @Column(name = "arrival_time")
-    private DateTime arrivalTime;
+    @Temporal(TemporalType.TIME)
+    private Date arrivalTime;
 
     public int getId() {
         return id;
@@ -87,35 +92,35 @@ public class AirlineTicket implements Serializable {
         this.price = price;
     }
 
-    public DateTime getLandingDate() {
+    public Date getLandingDate() {
         return landingDate;
     }
 
-    public void setLandingDate(DateTime landingDate) {
+    public void setLandingDate(Date landingDate) {
         this.landingDate = landingDate;
     }
 
-    public DateTime getLandingTime() {
+    public Date getLandingTime() {
         return landingTime;
     }
 
-    public void setLandingTime(DateTime landingTime) {
+    public void setLandingTime(Date landingTime) {
         this.landingTime = landingTime;
     }
 
-    public DateTime getArrivalDate() {
+    public Date getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(DateTime arrivalDate) {
+    public void setArrivalDate(Date arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 
-    public DateTime getArrivalTime() {
+    public Date getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(DateTime arrivalTime) {
+    public void setArrivalTime(Date arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
@@ -134,5 +139,20 @@ public class AirlineTicket implements Serializable {
     @Override
     public int hashCode() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("id", id)
+                .add("airline", airline)
+                .add("fromCity", fromCity)
+                .add("destinationCity", destinationCity)
+                .add("price", price)
+                .add("landingDate", landingDate)
+                .add("landingTime", landingTime)
+                .add("arrivalDate", arrivalDate)
+                .add("arrivalTime", arrivalTime)
+                .toString();
     }
 }

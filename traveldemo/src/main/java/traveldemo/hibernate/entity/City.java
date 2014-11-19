@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "city")
 @NamedQueries({
-        @NamedQuery(name = "city.getAll", query = "SELECT c FROM City c"),
+        @NamedQuery(name = "city.getAll", query = "SELECT c FROM City c ORDER BY c.cityName"),
         @NamedQuery(name = "city.getById", query = "SELECT c FROM City c WHERE id = :id ")
 })
 public class City implements Serializable {

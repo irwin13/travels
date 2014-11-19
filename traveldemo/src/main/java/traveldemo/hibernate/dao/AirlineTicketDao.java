@@ -5,6 +5,8 @@ import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import traveldemo.hibernate.entity.AirlineTicket;
 
 import java.util.List;
@@ -13,6 +15,8 @@ import java.util.List;
  * Created by irwin on 11/16/14.
  */
 public class AirlineTicketDao extends AbstractDAO<AirlineTicket> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AirlineTicketDao.class);
 
     public AirlineTicketDao(SessionFactory sessionFactory) {
         super(sessionFactory);
@@ -24,6 +28,8 @@ public class AirlineTicketDao extends AbstractDAO<AirlineTicket> {
 
     public List<AirlineTicket> select(AirlineTicket filter) {
         List<AirlineTicket> list;
+        LOGGER.debug("filter = {}", filter);
+
         Session session = currentSession();
         StringBuilder sql = new StringBuilder("SELECT a FROM AirlineTicket a WHERE 1=1");
 
