@@ -1,3 +1,6 @@
+--liquibase formatted sql
+
+--changeset irwin:3
 INSERT INTO airline_ticket
 (airline_id, from_city, destination_city, landing_date, landing_time, arrival_date, arrival_time, price)
 VALUES(2, 2, 1, '2014-10-10', '10:00:00', '2014-10-13', '13:00:00', 2000);
