@@ -4,3 +4,5 @@ target/
 *.jar
 *.war
 *.iml
+.project
+.classpath
