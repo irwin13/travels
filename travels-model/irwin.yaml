@@ -1,0 +1,71 @@
+server:
+  type: simple
+  maxThreads: 1024
+  minThreads: 8
+  maxQueuedRequests: 1024
+  applicationContextPath: /travels-model
+  adminContextPath: /travels-model-admin
+  connector:
+    type: http
+    port: 8100
+
+database:
+  # the name of your JDBC driver
+  driverClass: org.postgresql.Driver
+
+  # the username
+  user: pgdev
+
+  # the password
+  password: pgdev123
+
+  # the JDBC URL
+  url: jdbc:postgresql://localhost:5432/travels
+
+  # any properties specific to your JDBC driver:
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.PostgreSQL9Dialect
+
+  # the maximum amount of time to wait on an empty pool before throwing an exception
+  maxWaitForConnection: 1s
+
+  # the SQL query to run when validating a connection's liveness
+  validationQuery: "/* MyApplication Health Check */ SELECT 1"
+
+  # the minimum number of connections to keep open
+  minSize: 8
+
+  # the maximum number of connections to keep open
+  maxSize: 32
+
+  # whether or not idle connections should be validated
+  checkConnectionWhileIdle: false
+
+logging:
+
+  # Permit DEBUG, INFO, WARN and ERROR messages to be logged by appenders.
+  level: DEBUG
+
+  loggers:
+    io.dropwizard: DEBUG
+    traveldemo: DEBUG
+    org.eclipse.jetty: INFO
+    org.hibernate: INFO
+    org.apache.http: INFO
+
+  appenders:
+    # Log warnings and errors to stderr
+    - type: console
+      threshold: INFO
+      target: stdout
+      timeZone: Asia/Jakarta
+
+    # Log info, warnings and errors to our apps' main log.
+    # Rolled over daily and retained for 5 days.
+    - type: file
+      threshold: DEBUG
+      currentLogFilename: /home/irwin/app-logs/travels-model.log
+      archivedLogFilenamePattern: /home/irwin/app-logs/travels-model-%d.log.gz
+      archivedFileCount: 3
+      timeZone: Asia/Jakarta
