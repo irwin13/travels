@@ -10,33 +10,34 @@ import java.util.Date;
 /**
  * Created by irwin on 11/22/14.
  */
-public class BasicEntity implements Serializable {
+@MappedSuperclass
+public abstract class BasicEntity implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(name = "id")
-    private String id;
+    protected String id;
 
     @Column(name = "active")
-    private Boolean active;
+    protected String active;
 
     @Column(name = "create_by")
-    private String createBy;
+    protected String createBy;
 
     @Column(name = "create_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createDate;
+    protected Date createDate;
 
     @Column(name = "last_update_by")
-    private String lastUpdateBy;
+    protected String lastUpdateBy;
 
     @Column(name = "last_update_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdateDate;
+    protected Date lastUpdateDate;
 
     @Column(name = "last_update_millis")
-    private Long lastUpdateMillis;
+    protected Long lastUpdateMillis;
 
     public String getId() {
         return id;
@@ -46,11 +47,11 @@ public class BasicEntity implements Serializable {
         this.id = id;
     }
 
-    public Boolean getActive() {
+    public String getActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(String active) {
         this.active = active;
     }
 

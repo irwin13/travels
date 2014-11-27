@@ -1,15 +1,10 @@
 package travels.model.dao;
 
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
 import io.dropwizard.hibernate.AbstractDAO;
-import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import travels.shared.entity.City;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -21,14 +16,16 @@ public class CityDao extends AbstractDAO<City> {
         super(sessionFactory);
     }
 
-    @Override
-    protected City get(Serializable id) {
-        return super.get(id);
+    public List<City> getAll() {
+        return criteria().list();
     }
 
-    public List<City> select(City filter) {
-        List<City> list = null;
-        Criteria criteria = criteria();
-        return (list == null) ? Lists.<City>newArrayList() : list;
+    public List<City> getByName(String name) {
+        return criteria().add(Restrictions.eq("cityName", name)).list();
     }
+
+    public City getByCode(String code) {
+        return (City) criteria().add(Restrictions.eq("cityCode", code)).uniqueResult();
+    }
+
 }

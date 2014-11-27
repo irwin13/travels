@@ -1,11 +1,13 @@
 package travels.model.resource;
 
+import com.google.common.base.Strings;
+import io.dropwizard.hibernate.UnitOfWork;
 import travels.model.dao.CityDao;
+import travels.shared.entity.City;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 /**
  * Created by irwin on 11/22/14.
@@ -21,4 +23,20 @@ public class CityResource {
         this.cityDao = cityDao;
     }
 
+    @Path("/{code}")
+    @GET
+    @UnitOfWork
+    public City getById(@PathParam("code") String code) {
+        return cityDao.getByCode(code);
+    }
+
+    @GET
+    @UnitOfWork
+    public List<City> get(@QueryParam("name") String name) {
+        if (!Strings.isNullOrEmpty(name)) {
+            return cityDao.getByName(name);
+        } else {
+            return cityDao.getAll();
+        }
+    }
 }

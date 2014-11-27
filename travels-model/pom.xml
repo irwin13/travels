@@ -108,10 +108,11 @@
             <version>${dropwizard.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.3-1100-jdbc4</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.6</version>
         </dependency>
+
         <dependency>
             <groupId>travels</groupId>
             <artifactId>travels-shared</artifactId>
