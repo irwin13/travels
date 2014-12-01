@@ -8,7 +8,7 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import travels.model.dao.CityDao;
 import travels.model.resource.CityResource;
-import travels.shared.entity.City;
+import travels.shared.entity.*;
 
 /**
  * Created by irwin on 11/22/14.
@@ -20,7 +20,8 @@ public class ModelApplication extends Application<ModelConfiguration> {
     }
 
     private final HibernateBundle<ModelConfiguration> hibernate = new HibernateBundle<ModelConfiguration>
-            (City.class) {
+            (City.class, CustomerTicket.class, Airport.class,
+                    Airline.class, AirlineTicket.class) {
 
         @Override
         public DataSourceFactory getDataSourceFactory(ModelConfiguration configuration) {

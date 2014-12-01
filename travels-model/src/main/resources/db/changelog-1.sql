@@ -3,7 +3,7 @@
 --changeset irwin:create-table-1 dbms:mysql
 CREATE TABLE city
 (
-  id char(36) NOT NULL primary key,
+  id char(32) NOT NULL primary key,
   active char(1) default 'Y',
   create_by varchar(255) default 'SYSTEM',
   create_date timestamp,
@@ -19,10 +19,10 @@ COLLATE=utf8_general_ci;
 --rollback drop table city;
 
 --changeset irwin:insert-table-1 dbms:mysql
-insert into city (id, city_name, city_code) values (REPLACE(uuid(), '-', ''), 'JAKARTA', 'SBY');
-insert into city (id, city_name, city_code) values (REPLACE(uuid(), '-', ''), 'DENPASAR', 'DPS');
-insert into city (id, city_name, city_code) values (REPLACE(uuid(), '-', ''), 'SURABAYA', 'SBY');
-insert into city (id, city_name, city_code) values (REPLACE(uuid(), '-', ''), 'SEMARANG', 'SMG');
-insert into city (id, city_name, city_code) values (REPLACE(uuid(), '-', ''), 'PADANG', 'PDG');
+insert into city (id, city_name, city_code) values ('ee5ad12a765411e4b10f001742076f00', 'JAKARTA', 'SBY');
+insert into city (id, city_name, city_code) values ('ee5ad12a765411e4b10f001742076f01', 'DENPASAR', 'DPS');
+insert into city (id, city_name, city_code) values ('ee5ad12a765411e4b10f001742076f02', 'SURABAYA', 'SBY');
+insert into city (id, city_name, city_code) values ('ee5ad12a765411e4b10f001742076f03', 'SEMARANG', 'SMG');
+insert into city (id, city_name, city_code) values ('ee5ad12a765411e4b10f001742076f04', 'PADANG', 'PDG');
 
 

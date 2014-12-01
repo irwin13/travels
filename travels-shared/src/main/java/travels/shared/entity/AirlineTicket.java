@@ -15,7 +15,7 @@ import java.util.Date;
 public class AirlineTicket extends BasicEntity {
 
     @ManyToOne
-    @JoinColumn(name = "airline_id")
+    @JoinColumn(name = "airline")
     private Airline airline;
 
     @ManyToOne

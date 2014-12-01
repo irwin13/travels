@@ -14,7 +14,7 @@ import java.io.Serializable;
         @NamedQuery(name = "customerTicket.filterHomePage",
                 query = "SELECT c FROM CustomerTicket c WHERE c.customerName = :customerName ")
 })
-public class CustomerTicket implements Serializable {
+public class CustomerTicket extends BasicEntity {
 
     @Column(name = "customer_name")
     private String customerName;
