@@ -1,0 +1,54 @@
+server:
+  type: simple
+  maxThreads: 1024
+  minThreads: 8
+  maxQueuedRequests: 1024
+  applicationContextPath: /travels-web
+  adminContextPath: /travels-web-admin
+  connector:
+    type: http
+    port: 8300
+
+modelUrl: http://localhost:8100/travels-model/
+assetsUrl: http://localhost:8200/travels-assets
+velocityCache: false
+velocityModificationCheck: 60
+
+httpClient:
+  timeout: 1000ms
+  connectionTimeout: 1000ms
+  timeToLive: 1h
+  cookiesEnabled: false
+  maxConnections: 1024
+  maxConnectionsPerRoute: 1024
+  keepAlive: 0ms
+  retries: 0
+  userAgent: travels-web (http-client)
+
+logging:
+
+  # Permit DEBUG, INFO, WARN and ERROR messages to be logged by appenders.
+  level: DEBUG
+
+  loggers:
+    io.dropwizard: DEBUG
+    traveldemo: DEBUG
+    org.eclipse.jetty: INFO
+    org.hibernate: INFO
+    org.apache.http: INFO
+
+  appenders:
+    # Log warnings and errors to stderr
+    - type: console
+      threshold: INFO
+      target: stdout
+      timeZone: Asia/Jakarta
+
+    # Log info, warnings and errors to our apps' main log.
+    # Rolled over daily and retained for 5 days.
+    - type: file
+      threshold: DEBUG
+      currentLogFilename: /home/irwin/app-logs/travels-web.log
+      archivedLogFilenamePattern: /home/irwin/app-logs/travels-web-%d.log.gz
+      archivedFileCount: 3
+      timeZone: Asia/Jakarta

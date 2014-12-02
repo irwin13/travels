@@ -1,0 +1,56 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+  <head> 
+    <meta charset="utf-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta name="description" content=""> 
+    <meta name="author" content=""> 
+ 
+    <title>Travels</title> 
+ 
+    <!-- Bootstrap core CSS --> 
+    <link href="$assetsUrl/css/bootstrap.min.css" rel="stylesheet"> 
+    <!-- Bootstrap theme --> 
+    <link href="$assetsUrl/css/bootstrap-theme.min.css" rel="stylesheet"> 
+ 
+  </head> 
+ 
+  <body role="document"> 
+ 
+    <!-- Fixed navbar --> 
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> 
+      <div class="container"> 
+        <div class="navbar-header"> 
+          <a class="navbar-brand" href="#">Home</a> 
+        </div> 
+        <div id="navbar" class="navbar-collapse collapse"> 
+          <ul class="nav navbar-nav"> 
+            <li><a href="#">Customer Login</a></li> 
+            <li><a href="#">Agent Login</a></li> 
+            <li><a href="#about">About</a></li> 
+            <li><a href="#contact">Contact</a></li> 
+          </ul> 
+        </div><!--/.nav-collapse --> 
+      </div> 
+    </nav> 
+ 
+    <div class="container theme-showcase" role="main"> 
+ 
+      <!-- Main jumbotron for a primary marketing message or call to action --> 
+      <div class="jumbotron"> 
+        <h2>Travels</h2> 
+	<img alt="Travels" src="$assetsUrl/img/slidetravel1.png" width="600px" height="200px"  />
+      </div> 
+  
+    </div> <!-- /container --> 
+ 
+ 
+    <!-- Bootstrap core JavaScript
+    ================================================== --> 
+    <!-- Placed at the end of the document so the pages load faster --> 
+    <script src="$assetsUrl/js/jquery-1.11.1.min.js"></script> 
+    <script src="$assetsUrl/js/jquery-ui-1.10.4.min.js"></script> 
+    <script src="$assetsUrl/js/bootstrap.min.js"></script> 
+  </body> 
+</html> 

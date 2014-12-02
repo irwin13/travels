@@ -37,3 +37,6 @@ VALUES(4, 4, 3, '2014-11-28', '13:00:00', '2014-10-15', '07:00:00', 88000);
 INSERT INTO airline_ticket
 (airline_id, from_city, destination_city, landing_date, landing_time, arrival_date, arrival_time, price)
 VALUES(4, 5, 2, '2014-11-28', '13:00:00', '2014-10-15', '07:00:00', 99000);
+
+jetty assets start :
+java -jar jetty-runner.jar --port 8900 --path /travel-assets travels-assets/
