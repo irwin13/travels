@@ -42,7 +42,9 @@ public class WebApplication extends Application<WebConfiguration> {
                 .using(config.getHttpClientConfiguration())
                 .build("travels-web");
 
-        HomeResource homeResource = new HomeResource(httpClient, config);
+        HomeResource homeResource = new HomeResource(httpClient, config,
+                environment.getObjectMapper());
         environment.jersey().register(homeResource);
+
     }
 }

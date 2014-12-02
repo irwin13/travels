@@ -9,7 +9,7 @@ server:
     type: http
     port: 8300
 
-modelUrl: http://localhost:8100/travels-model/
+modelUrl: http://localhost:8100/travels-model
 assetsUrl: http://localhost:8200/travels-assets
 velocityCache: false
 velocityModificationCheck: 60
