@@ -51,4 +51,23 @@ public class HomeResource {
 
         return Response.ok(content).build();
     }
+
+    @GET
+    @Path("/showTickets")
+    @Produces(MediaType.TEXT_HTML)
+    public Response showTickets() throws IOException {
+
+        RestClient restClient = new RestClient(httpClient);
+        String jsonAllCity = restClient.get(config.getModelUrl() + "/city", null, null);
+        List<City> cityList = objectMapper.readValue(jsonAllCity, new TypeReference<List<City>>() {});
+
+        Map<String, Object> objectMap = new TreeMap();
+        objectMap.put("cityList", cityList);
+
+        VelocityUtil velocityUtil = new VelocityUtil(config);
+        String content = velocityUtil.stringFromVm("/vita/home.vm", objectMap);
+
+        return Response.ok(content).build();
+    }
+
 }

@@ -26,7 +26,7 @@ public class CityResource {
     @Path("/{code}")
     @GET
     @UnitOfWork
-    public City getById(@PathParam("code") String code) {
+    public City getByCode(@PathParam("code") String code) {
         return cityDao.getByCode(code);
     }
 
