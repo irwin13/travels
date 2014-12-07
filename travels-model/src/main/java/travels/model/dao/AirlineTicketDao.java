@@ -22,7 +22,7 @@ public class AirlineTicketDao extends AbstractDAO<AirlineTicket> {
         super(sessionFactory);
     }
 
-    public List<AirlineTicket> select(AirlineTicket filter) {
+    public List<AirlineTicket> select(AirlineTicket filter, int maxFetch) {
         List<AirlineTicket> list;
         LOGGER.debug("filter = {}", filter);
 
@@ -47,6 +47,8 @@ public class AirlineTicketDao extends AbstractDAO<AirlineTicket> {
 
         Query query = session.createQuery(sql.toString());
         query.setProperties(filter);
+        query.setFetchSize(maxFetch);
+        query.setFirstResult(0);
 
         list = query.list();
         return (list == null) ? Lists.<AirlineTicket>newLinkedList() : list;

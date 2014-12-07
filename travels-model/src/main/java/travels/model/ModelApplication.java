@@ -6,7 +6,9 @@ import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import travels.model.dao.AirlineTicketDao;
 import travels.model.dao.CityDao;
+import travels.model.resource.AirlineTicketResource;
 import travels.model.resource.CityResource;
 import travels.shared.entity.*;
 
@@ -44,8 +46,13 @@ public class ModelApplication extends Application<ModelConfiguration> {
     @Override
     public void run(ModelConfiguration modelConfiguration, Environment environment) throws Exception {
         final CityDao cityDao = new CityDao(hibernate.getSessionFactory());
+        final AirlineTicketDao airlineTicketDao = new AirlineTicketDao(hibernate.getSessionFactory());
+
         final CityResource cityResource = new CityResource(cityDao);
+        final AirlineTicketResource airlineTicketResource = new AirlineTicketResource(airlineTicketDao, cityDao);
+
         environment.jersey().register(cityResource);
+        environment.jersey().register(airlineTicketResource);
 
     }
 }

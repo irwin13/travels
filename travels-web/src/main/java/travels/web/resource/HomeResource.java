@@ -3,6 +3,7 @@ package travels.web.resource;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.HttpClient;
+import travels.shared.entity.AirlineTicket;
 import travels.shared.entity.City;
 import travels.web.WebConfiguration;
 import travels.web.util.RestClient;
@@ -58,14 +59,15 @@ public class HomeResource {
     public Response showTickets() throws IOException {
 
         RestClient restClient = new RestClient(httpClient);
-        String jsonAllCity = restClient.get(config.getModelUrl() + "/city", null, null);
-        List<City> cityList = objectMapper.readValue(jsonAllCity, new TypeReference<List<City>>() {});
+        String jsonAllCity = restClient.get(config.getModelUrl() + "/airlineTicket", null, null);
+        List<AirlineTicket> airlineTicketList = objectMapper.readValue(jsonAllCity,
+                new TypeReference<List<AirlineTicket>>() {});
 
         Map<String, Object> objectMap = new TreeMap();
-        objectMap.put("cityList", cityList);
+        objectMap.put("airlineTicketList", airlineTicketList);
 
         VelocityUtil velocityUtil = new VelocityUtil(config);
-        String content = velocityUtil.stringFromVm("/vita/home.vm", objectMap);
+        String content = velocityUtil.stringFromVm("/vita/showTickets.vm", objectMap);
 
         return Response.ok(content).build();
     }

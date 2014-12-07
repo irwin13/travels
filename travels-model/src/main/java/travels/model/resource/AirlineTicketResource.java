@@ -9,10 +9,7 @@ import travels.model.dao.CityDao;
 import travels.shared.entity.AirlineTicket;
 import travels.shared.entity.City;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,11 +36,13 @@ public class AirlineTicketResource {
     }
 
     @Path("/select")
+    @GET
     @UnitOfWork
     public List<AirlineTicket> filter(@QueryParam("destinationCity") String destinationCity,
                                       @QueryParam("fromCity") String fromCity,
                                       @QueryParam("landingDate") String landingDate,
-                                      @QueryParam("arrivalDate") String arrivalDate) throws ParseException {
+                                      @QueryParam("arrivalDate") String arrivalDate,
+                                      @QueryParam("maxFetch") @DefaultValue("15") int maxFetch) throws ParseException {
 
         AirlineTicket filter = new AirlineTicket();
 
@@ -69,7 +68,7 @@ public class AirlineTicketResource {
 
         LOGGER.debug("filter = {}", filter);
 
-        return airlineTicketDao.select(filter);
+        return airlineTicketDao.select(filter, maxFetch);
     }
 
 }
