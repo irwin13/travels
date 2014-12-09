@@ -102,7 +102,7 @@
                         data : $('#searchTicketForm').serialize(),
 		                beforeSend : function (xhr) {
 			                var loading = "<p align='center'><img alt='Loading' src='$assetsUrl/img/searching.gif' /></p>";
-			                $('#listContent').html(loading);
+			                $('#ticketContent').html(loading);
 		                },                        
                         success: function(data, textStatus) {
                             $('#ticketContent').html(data);
