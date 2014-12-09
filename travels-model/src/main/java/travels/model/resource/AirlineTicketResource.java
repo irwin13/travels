@@ -48,20 +48,24 @@ public class AirlineTicketResource {
 
         if (!Strings.isNullOrEmpty(destinationCity)) {
             City destination = cityDao.getByCode(destinationCity);
-            filter.setDestinationCity(destination);
+            if (destination != null) {
+                filter.setDestinationCity(destination);
+            }
         }
 
         if (!Strings.isNullOrEmpty(fromCity)) {
             City from = cityDao.getByCode(fromCity);
-            filter.setFromCity(from);
+            if (from != null) {
+                filter.setFromCity(from);
+            }
         }
 
-        if (!Strings.isNullOrEmpty(landingDate)) {
+        if (!Strings.isNullOrEmpty(landingDate) && !"null".equalsIgnoreCase(landingDate)) {
             Date landing = SDF.parse(landingDate);
             filter.setLandingDate(landing);
         }
 
-        if (!Strings.isNullOrEmpty(arrivalDate)) {
+        if (!Strings.isNullOrEmpty(arrivalDate) && !"null".equalsIgnoreCase(arrivalDate)) {
             Date arrival = SDF.parse(arrivalDate);
             filter.setArrivalDate(arrival);
         }

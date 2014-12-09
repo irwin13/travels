@@ -1,14 +1,21 @@
 package travels.web;
 
 import io.dropwizard.Application;
-import io.dropwizard.client.HttpClientBuilder;
+import io.dropwizard.db.DataSourceFactory;
+import io.dropwizard.hibernate.HibernateBundle;
+import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import org.apache.http.client.HttpClient;
 import org.apache.velocity.app.Velocity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import travels.shared.entity.*;
+import travels.web.dao.AirlineTicketDao;
+import travels.web.dao.CityDao;
+import travels.web.dao.CustomerTicketDao;
+import travels.web.resource.CustomerTicketResource;
 import travels.web.resource.HomeResource;
+import travels.web.resource.PassengerDataResource;
 import travels.web.util.VelocityUtil;
 
 import java.util.Properties;
@@ -24,8 +31,26 @@ public class WebApplication extends Application<WebConfiguration> {
         new WebApplication().run(args);
     }
 
+    private final HibernateBundle<WebConfiguration> hibernate = new HibernateBundle<WebConfiguration>
+            (City.class, CustomerTicket.class, Airport.class,
+                    Airline.class, AirlineTicket.class) {
+
+        @Override
+        public DataSourceFactory getDataSourceFactory(WebConfiguration configuration) {
+            return configuration.getDataSourceFactory();
+        }
+    };
+
     @Override
     public void initialize(Bootstrap<WebConfiguration> bootstrap) {
+        bootstrap.addBundle(new MigrationsBundle<WebConfiguration>() {
+            @Override
+            public DataSourceFactory getDataSourceFactory(WebConfiguration configuration) {
+                return configuration.getDataSourceFactory();
+            }
+        });
+
+        bootstrap.addBundle(hibernate);
 
     }
 
@@ -38,13 +63,22 @@ public class WebApplication extends Application<WebConfiguration> {
         Velocity.init(velocityProperties);
         LOGGER.info("init VELOCITY with param = {}", velocityProperties);
 
-        final HttpClient httpClient = new HttpClientBuilder(environment)
-                .using(config.getHttpClientConfiguration())
-                .build("travels-web");
+//        final HttpClient httpClient = new HttpClientBuilder(environment)
+//                .using(config.getHttpClientConfiguration())
+//                .build("travels-web");
 
-        HomeResource homeResource = new HomeResource(httpClient, config,
-                environment.getObjectMapper());
+        final CityDao cityDao = new CityDao(hibernate.getSessionFactory());
+        final AirlineTicketDao airlineTicketDao = new AirlineTicketDao(hibernate.getSessionFactory());
+        final CustomerTicketDao customerTicketDao = new CustomerTicketDao(hibernate.getSessionFactory());
+
+        HomeResource homeResource = new HomeResource(config, cityDao, airlineTicketDao);
+        PassengerDataResource passengerDataResource = new PassengerDataResource(config, customerTicketDao,
+                airlineTicketDao);
+        CustomerTicketResource customerTicketResource = new CustomerTicketResource(config, customerTicketDao);
+
         environment.jersey().register(homeResource);
+        environment.jersey().register(passengerDataResource);
+        environment.jersey().register(customerTicketResource);
 
     }
 }

@@ -1,0 +1,123 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+	<head> 
+		<meta charset="utf-8"> 
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<meta name="description" content="travels"> 
+		<meta name="author" content="travels"> 
+	 
+		<title>Passenger Data</title> 
+
+        #parse("/vita/common/header.vm") 
+	</head>         
+    <body role="document"> 
+        #parse("/vita/common/menu.vm")          
+        <div class="container"> 
+            <div>
+	            <form action="./passengerData" class="form-horizontal" id="passengerForm" name="passengerForm" onkeypress="return event.keyCode != 13;" method="post" enctype="application/x-www-form-urlencoded">
+                    <div class="form-group">
+                        <label for="namaLengkap" class="col-sm-3 control-label">Nama Lengkap</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="namaLengkap" name="namaLengkap" />
+                        </div>
+                    </div>		  		                                          
+                    <div class="form-group">
+                        <label for="telepon" class="col-sm-3 control-label">Telepon</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="telepon" name="telepon" />
+                        </div>
+                    </div>		  		                                                              
+                    <div class="form-group">
+                        <label for="email" class="col-sm-3 control-label">Email</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="email" name="email" />
+                        </div>
+                    </div>		  		                                                  
+                    <div class="form-group">
+                        <label for="paymentMethod" class="col-sm-3 control-label">Metode Pembayaran</label>
+                        <div class="col-sm-4">
+                            <select id="paymentMethod" name="paymentMethod">
+                                <option value=""></option>
+                                <option value="transfer">Transfer</option>
+                                <option value="internet_banking">Internet Banking</option>
+                                <option value="kartu_kredit">Kartu Kredit</option>                                
+                            </select>
+                        </div>
+                    </div>		                                                                                                      
+                    <div class="form-group">
+                        <label for="arrivalDate" class="col-sm-3 control-label">&nbsp;</label>
+                        <div class="col-sm-2">
+                            <a href="./" class="btn btn-default">Back</a>
+                            <button type="button" class="btn btn-default" onclick="validateForm()">Proses</button>
+                        </div>
+                    </div>		  		                                                              
+                    <div>
+                        <h4>Pilihan Tiket</h4>
+                        <table class="table table-condensed table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Maskapai</th>                        
+                                    <th>Berangkat</th>            
+                                    <th>Tujuan</th>      
+                                    <th>Waktu Berangkat</th>                        
+                                    <th>Waktu Kedatangan</th>                                    
+                                    <th>Harga</th>            
+                                </tr>        
+                            </thead>    
+                            <tbody>        
+                            #set ($counter = 0)
+                            #foreach($data in $airlineTicketList)
+                            #set ($counter = $counter + 1)    
+                                <tr>
+                                    <td>$counter</td>
+                                    <td><img alt="$data.airline.airlineCode" src="$assetsUrl/img/$data.airline.logoImg" /> $data.airline.airlineName</td>            
+                                    <td>$data.fromCity.cityName</td>
+                                    <td>$data.destinationCity.cityName</td>
+                                    <td>$dateTool.format('dd MMM yyyy', $data.landingDate) $dateTool.format('HH:mm:ss', $data.landingTime)</td>            
+                                    <td>$dateTool.format('dd MMM yyyy', $data.arrivalDate) $dateTool.format('HH:mm:ss', $data.arrivalTime)</td>                       
+                                    <td>IDR $numberTool.format('###,###', $data.price)</td>            
+                                    <input type="hidden" name="selectedTicket" value="$data.id" />
+                                </tr>                                
+                            #end
+                            </tbody>    
+                        </table>
+                    </div>                                        
+	            </form>	            
+            </div>	           
+        </div> <!-- /container --> 
+ 
+        #parse("/vita/common/footer.vm")
+                
+        <script type="text/javascript">
+            function validateForm() {
+                var errorMsg = "";
+
+                if ($('#namaLengkap').val() == "") {
+                    errorMsg += "Nama Lengkap belum diisi \n";
+                }
+
+                
+                if ($('#telepon').val() == "") {
+                    errorMsg += "Telepon belum diisi \n";
+                }
+
+                if ($('#email').val() == "") {
+                    errorMsg += "Email belum diisi \n";
+                }
+
+                if ($('#paymentMethod').val() == "") {
+                    errorMsg += "Metode Pembayaran belum diisi \n";
+                }
+                
+                if (errorMsg == "") {
+                    $('#passengerForm').submit();                    
+                } else {
+                    alert(errorMsg);
+                }
+            }
+                        
+        </script>
+    </body> 
+</html>   

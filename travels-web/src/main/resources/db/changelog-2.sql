@@ -170,8 +170,3 @@ VALUES(REPLACE(uuid(), '-', ''),
 'ee5ad12a765411e4b10f001742076f02',
 'ee5ad12a765411e4b10f001742076f04',
 '2014-12-02', '13:00:00', '2014-10-15', '07:00:00', 8000);
-
---changeset irwin:update-table-1 dbms:mysql
-update airline_ticket set last_update_date = current_timestamp();
-update airline set last_update_date = current_timestamp();
-update city set last_update_date = current_timestamp();

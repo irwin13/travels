@@ -1,0 +1,55 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+	<head> 
+		<meta charset="utf-8"> 
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<meta name="description" content="travels"> 
+		<meta name="author" content="travels"> 
+	 
+		<title>Home</title> 
+
+        #parse("/vita/common/header.vm") 
+	</head>         
+    <body role="document"> 
+        #parse("/vita/common/menu.vm")          
+        <div class="container"> 
+            <div>
+                <p class="text-center">
+                    <h4>Status Ticket</h4>
+                    <table class="table table-condensed table-hover table-striped">
+                        <thead>
+                            <tr>                               
+                                <th>Nama Penumpang</th>                                                    
+                                <th>Telepon Penumpang</th>                                                                                    
+                                <th>Maskapai</th>                        
+                                <th>Kota Keberangkatan</th>            
+                                <th>Kota Tujuan</th>      
+                                <th>Waktu Keberangkatan</th>                        
+                                <th>Waktu Kedatangan</th>                                    
+                                <th>Harga</th> 
+                                <th>Status Tiket</th>
+                            </tr>        
+                        </thead>    
+                        <tbody>        
+                            <tr>
+                                <td>$customerTicket.customerName</td>                            
+                                <td>$customerTicket.customerPhone</td>                                                            
+                                <td><img alt="$customerTicket.airlineTicket.airline.airlineCode" src="$assetsUrl/img/$customerTicket.airlineTicket.airline.logoImg" /> $customerTicket.airlineTicket.airline.airlineName</td>            
+                                <td>$customerTicket.airlineTicket.fromCity.cityName</td>
+                                <td>$customerTicket.airlineTicket.destinationCity.cityName</td>
+                                <td>$dateTool.format('dd MMM yyyy', $customerTicket.airlineTicket.landingDate) $dateTool.format('HH:mm:ss', $customerTicket.airlineTicket.landingTime)</td>            
+                                <td>$dateTool.format('dd MMM yyyy', $customerTicket.airlineTicket.arrivalDate) $dateTool.format('HH:mm:ss', $customerTicket.airlineTicket.arrivalTime)</td>                       
+                                <td>IDR $numberTool.format('###,###', $customerTicket.airlineTicket.price)</td>            
+                                <td>$customerTicket.paymentStatus</td>                                                            
+                            </tr>
+                        </tbody>    
+                    </table>
+                                    
+                </p>
+            </div>          
+        </div> <!-- /container --> 
+ 
+        #parse("/vita/common/footer.vm")                
+    </body> 
+</html>   

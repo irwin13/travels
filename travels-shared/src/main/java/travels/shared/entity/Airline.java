@@ -18,6 +18,9 @@ public class Airline extends BasicEntity {
     @Column(name = "airline_code")
     private String airlineCode;
 
+    @Column(name = "logo_img")
+    private String logoImg;
+
     public String getAirlineName() {
         return airlineName;
     }
@@ -34,4 +37,11 @@ public class Airline extends BasicEntity {
         this.airlineCode = airlineCode;
     }
 
+    public String getLogoImg() {
+        return logoImg;
+    }
+
+    public void setLogoImg(String logoImg) {
+        this.logoImg = logoImg;
+    }
 }

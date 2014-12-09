@@ -4,75 +4,137 @@
 		<meta charset="utf-8"> 
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<meta name="description" content=""> 
-		<meta name="author" content=""> 
+		<meta name="description" content="travels"> 
+		<meta name="author" content="travels"> 
 	 
-		<title>Travels</title> 
+		<title>Home</title> 
 
-		<!-- Bootstrap core CSS --> 
-		<link href="$assetsUrl/css/bootstrap.min.css" rel="stylesheet"> 
-		<!-- Bootstrap theme --> 
-		<link href="$assetsUrl/css/bootstrap-theme.min.css" rel="stylesheet"> 
-	</head> 
+        #parse("/vita/common/header.vm") 
+	</head>         
+    <body role="document"> 
+        #parse("/vita/common/menu.vm")          
+        <div class="container"> 
+            <div>
+	            <form action="#" class="form-horizontal" id="searchTicketForm" name="searchTicketForm" onkeypress="return event.keyCode != 13;">
+                    <div class="form-group">
+                        <label for="fromCity" class="col-sm-3 control-label">Kota Keberangkatan</label>
+                        <div class="col-sm-4">
+                            <select name="fromCity" class="form-control" id="fromCity">
+                                <option value="">Kota Keberangkatan</option>
+                                #foreach($city in $cityList)
+                                <option value="$city.id">$city.cityName</option>
+                                #end
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="destinationCity" class="col-sm-3 control-label">Kota Tujuan</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="destinationCity" name="destinationCity">
+                                <option value="">Kota Tujuan</option>
+                                #foreach($city in $cityList)
+                                <option value="$city.id">$city.cityName</option>
+                                #end
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="landingDate" class="col-sm-3 control-label">Tanggal Berangkat</label>
+                        <div class="col-sm-2">		
+                            <input type="text" class="form-control" id="leaveDate" name="leaveDate" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="arrivalDate" class="col-sm-3 control-label">Tanggal Pulang</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="returnDate" name="returnDate" />
+                        </div>
+                    </div>		  		  
+                    <div class="form-group">
+                        <label for="adultTicket" class="col-sm-3 control-label">Tiket Dewasa</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="adultTicket" name="adultTicket" />
+                        </div>
+                    </div>		  		                                          
+                    <div class="form-group">
+                        <label for="childrenTicket" class="col-sm-3 control-label">Tiket Anak-anak</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="childrenTicket" name="childrenTicket" />
+                        </div>
+                    </div>		  		                                                              
+                    <div class="form-group">
+                        <label for="babyTicket" class="col-sm-3 control-label">Tiket Bayi</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="babyTicket" name="babyTicket" />
+                        </div>
+                    </div>		  		                                                                                  
+                    <div class="form-group">
+                        <label for="arrivalDate" class="col-sm-3 control-label">&nbsp;</label>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-default" onclick="searchTicket()">Cari</button>
+                        </div>
+                    </div>		  		                                                              
+	            </form>
+            </div>	           
+            <div id="ticketContent" />            
+        </div> <!-- /container --> 
  
-  <body role="document"> 
- 
-    <!-- Fixed navbar --> 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> 
-      <div class="container"> 
-        <div class="navbar-header"> 
-          <a class="navbar-brand" href="#">Home</a> 
-        </div> 
-        <div id="navbar" class="navbar-collapse collapse"> 
-          <ul class="nav navbar-nav"> 
-            <li><a href="#">Customer Login</a></li> 
-            <li><a href="#">Agent Login</a></li> 
-            <li><a href="#about">About</a></li> 
-            <li><a href="#contact">Contact</a></li> 
-          </ul> 
-        </div><!--/.nav-collapse --> 
-      </div> 
-    </nav> 
- 
-    <div class="container theme-showcase" role="main"> 
- 
-      <!-- Main jumbotron for a primary marketing message or call to action --> 
-      <div class="jumbotron"> 
-        <h2>Travels</h2> 
-	<img alt="Travels" src="$assetsUrl/img/slidetravel1.png" width="600px" height="200px"  />
-      </div> 
+        #parse("/vita/common/footer.vm")
+                
+        <script type="text/javascript">
+            function searchTicket() {
+                var errorMsg = "";
 
-	<div>
-		<form role="form">
-		  <div class="form-group">
-		    <label for="fromCity">Kota Asal</label>
-		    <input type="text" class="form-control" id="fromCity" placeholder="Kota asal">
-		  </div>
-		  <div class="form-group">
-		    <label for="destinationCity">Kota Tujuan</label>
-		    <input type="text" class="form-control" id="destinationCity" placeholder="Kota Tujuan">
-		  </div>
-		  <div class="form-group">
-		    <label for="landingDate">Tanggal Berangkat</label>
-		    <input type="text" class="form-control" id="landingDate" />
-		    <p class="help-block">Tanggal keberangkatan</p>
-		  </div>
-		  <div class="form-group">
-		    <label for="arrivalDate">Tanggal Pulang</label>
-		    <input type="text" class="form-control" id="arrivalDate" />
-		    <p class="help-block">Tanggal Pulang</p>
-		  </div>		  		  
-		  <button type="submit" class="btn btn-default">Submit</button>
-		</form>
-	</div>
-    </div> <!-- /container --> 
- 
- 
-    <!-- Bootstrap core JavaScript
-    ================================================== --> 
-    <!-- Placed at the end of the document so the pages load faster --> 
-    <script src="$assetsUrl/js/jquery-1.11.1.min.js"></script> 
-    <script src="$assetsUrl/js/jquery-ui-1.10.4.min.js"></script> 
-    <script src="$assetsUrl/js/bootstrap.min.js"></script> 
-  </body> 
-</html> 
+                if ($('#fromCity').val() == "") {
+                    errorMsg += "Kota Keberangkatan belum dipilih \n";
+                }
+
+                
+                if ($('#fromCity').val() == $('#destinationCity').val()) {
+                    errorMsg += "Kota Keberangkatan tidak boleh sama dengan Kota Tujuan";
+                }
+                
+                if (errorMsg == "") {
+                    jQuery.ajax({
+                        type: "GET",
+                        url: './showTickets',
+                        dataType: "text",
+                        data : $('#searchTicketForm').serialize(),
+		                beforeSend : function (xhr) {
+			                var loading = "<p align='center'><img alt='Loading' src='$assetsUrl/img/searching.gif' /></p>";
+			                $('#listContent').html(loading);
+		                },                        
+                        success: function(data, textStatus) {
+                            $('#ticketContent').html(data);
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            var html = textStatus + " " + errorThrown;
+                            $('#ticketContent').html(html);
+                        }
+
+                    });
+                } else {
+                    alert(errorMsg);
+                }
+            }
+            
+            var d = new Date();
+            var thisYear = d.getFullYear();
+
+            $( "#leaveDate" ).datepicker({
+                dateFormat: 'dd-mm-yy',
+                changeMonth: true,
+                changeYear: true,
+                showOptions: { direction: "down" }
+            });
+
+            $( "#returnDate" ).datepicker({
+                dateFormat: 'dd-mm-yy',
+                changeMonth: true,
+                changeYear: true,
+                showOptions: { direction: "down" }
+            });
+            
+        </script>
+    </body> 
+</html>   

@@ -1,0 +1,32 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+	<head> 
+		<meta charset="utf-8"> 
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<meta name="description" content="travels"> 
+		<meta name="author" content="travels"> 
+	 
+		<title>Home</title> 
+
+        #parse("/vita/common/header.vm") 
+	</head>         
+    <body role="document"> 
+        #parse("/vita/common/menu.vm")          
+        <div class="container"> 
+            <div>
+                <p class="text-center">
+                    Tiket Anda telah diproses, untuk memeriksa status tiket anda, silakan membuka link dibawah ini :
+                </p>
+                #foreach($url in $urlList)
+                <p class="text-center">
+                    <a href="$url" target="_blank">$url</a>
+                </p>
+                #end
+                </p>                
+            </div>          
+        </div> <!-- /container --> 
+ 
+        #parse("/vita/common/footer.vm")                
+    </body> 
+</html>   

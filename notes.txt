@@ -1,5 +1,5 @@
 jetty assets start :
-java -jar jetty-runner.jar --port 8200 --path /travel-assets travels-assets/
+java -jar jetty-runner.jar --port 8200 --path /travels-assets travels-assets/
 
 jetty runner download link :
 http://central.maven.org/maven2/org/eclipse/jetty/jetty-runner/9.2.5.v20141112/jetty-runner-9.2.5.v20141112.jar

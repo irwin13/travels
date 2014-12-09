@@ -1,0 +1,16 @@
+        <nav class="navbar navbar-inverse" role="navigation"> 
+            <div class="container"> 
+                <div class="navbar-header"> 
+                    <a class="navbar-brand" href="./">Home</a> 
+                </div> 
+                <div id="navbar" class="navbar-collapse collapse"> 
+                    <ul class="nav navbar-nav"> 
+                        <li><a href="./">Customer Login</a></li> 
+                        <li><a href="./">Agent Login</a></li> 
+                        <li><a href="./">About</a></li> 
+                        <li><a href="./">Contact</a></li> 
+                    </ul> 
+                </div><!--/.nav-collapse --> 
+            </div> 
+        </nav> 
+

@@ -25,6 +25,12 @@ public class CustomerTicket extends BasicEntity {
     @Column(name = "customer_email")
     private String customerEmail;
 
+    @Column(name = "payment_method")
+    private String paymentMethod;
+
+    @Column(name = "payment_status")
+    private String paymentStatus;
+
     @ManyToOne
     @JoinColumn(name = "airline_ticket")
     private AirlineTicket airlineTicket;
@@ -61,4 +67,19 @@ public class CustomerTicket extends BasicEntity {
         this.airlineTicket = airlineTicket;
     }
 
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
 }

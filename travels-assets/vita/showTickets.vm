@@ -1,0 +1,77 @@
+<form method="get" action="./passengerData">
+    <div>
+        <h4>Tiket Berangkat</h4>
+        <table class="table table-condensed table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Maskapai</th>                        
+                    <th>Berangkat</th>            
+                    <th>Tujuan</th>      
+                    <th>Waktu Berangkat</th>                        
+                    <th>Waktu Kedatangan</th>                                    
+                    <th>Harga</th>            
+                    <th>Pilih</th>                            
+                </tr>        
+            </thead>    
+            <tbody>        
+            #set ($counter = 0)
+            #foreach($data in $leaveAirlineTicketList)
+            #set ($counter = $counter + 1)    
+                <tr>
+                    <td>$counter</td>
+                    <td><img alt="$data.airline.airlineCode" src="$assetsUrl/img/$data.airline.logoImg" /> $data.airline.airlineName</td>            
+                    <td>$data.fromCity.cityName</td>
+                    <td>$data.destinationCity.cityName</td>
+                    <td>$dateTool.format('dd MMM yyyy', $data.landingDate) $dateTool.format('HH:mm:ss', $data.landingTime)</td>            
+                    <td>$dateTool.format('dd MMM yyyy', $data.arrivalDate) $dateTool.format('HH:mm:ss', $data.arrivalTime)</td>                       
+                    <td>IDR $numberTool.format('###,###', $data.price)</td>            
+                    <td>
+                        <input type="checkbox" value="$data.id" name="selectedTicket" />
+                    </td>
+                </tr>
+            #end
+            </tbody>    
+        </table>
+    </div>    
+    #if ($returnAirlineTicketList.size() > 0)
+    <div>
+        <h4>Tiket Pulang</h4>
+        <table class="table table-condensed table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Maskapai</th>                        
+                    <th>Kota Keberangkatan</th>            
+                    <th>Kota Tujuan</th>      
+                    <th>Waktu Keberangkatan</th>                        
+                    <th>Waktu Kedatangan</th>                                    
+                    <th>Harga</th> 
+                    <th>Pilih</th>                              
+                </tr>        
+            </thead>    
+            <tbody>        
+            #set ($counter = 0)
+            #foreach($data in $returnAirlineTicketList)
+            #set ($counter = $counter + 1)    
+                <tr>
+                    <td>$counter</td>
+                    <td><img alt="$data.airline.airlineCode" src="$assetsUrl/img/$data.airline.logoImg" /> $data.airline.airlineName</td>            
+                    <td>$data.fromCity.cityName</td>
+                    <td>$data.destinationCity.cityName</td>
+                    <td>$dateTool.format('dd MMM yyyy', $data.landingDate) $dateTool.format('HH:mm:ss', $data.landingTime)</td>            
+                    <td>$dateTool.format('dd MMM yyyy', $data.arrivalDate) $dateTool.format('HH:mm:ss', $data.arrivalTime)</td>                       
+                    <td>IDR $numberTool.format('###,###', $data.price)</td>            
+                    <td>
+                        <input type="checkbox" value="$data.id" name="selectedTicket" />
+                    </td>                
+                </tr>
+            #end
+            </tbody>    
+        </table>
+    </div>    
+    #end
+    <p class="text-right">
+        <button type="submit" class="btn btn-primary">Pilih Tiket</button>
+    </p>
+</form>    

@@ -27,7 +27,7 @@ public class AirlineTicket extends BasicEntity {
     private City destinationCity;
 
     @Column(name = "price")
-    private int price;
+    private Double price;
 
     @Column(name = "landing_date")
     @Temporal(TemporalType.DATE)
@@ -69,11 +69,11 @@ public class AirlineTicket extends BasicEntity {
         this.destinationCity = destinationCity;
     }
 
-    public int getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
