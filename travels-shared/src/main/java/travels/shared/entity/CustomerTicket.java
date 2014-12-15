@@ -25,15 +25,28 @@ public class CustomerTicket extends BasicEntity {
     @Column(name = "customer_email")
     private String customerEmail;
 
+    @ManyToOne
+    @JoinColumn(name = "airline_ticket")
+    private AirlineTicket airlineTicket;
+
+    @ManyToOne
+    @JoinColumn(name = "customer")
+    private Customer customer;
+
     @Column(name = "payment_method")
     private String paymentMethod;
 
     @Column(name = "payment_status")
     private String paymentStatus;
 
-    @ManyToOne
-    @JoinColumn(name = "airline_ticket")
-    private AirlineTicket airlineTicket;
+    @Column(name = "passenger_name")
+    private String passengerName;
+
+    @Column(name = "passenger_title")
+    private String passengerTitle;
+
+    @Column(name = "luggage")
+    private Integer luggage;
 
     public String getCustomerName() {
         return customerName;
@@ -81,5 +94,37 @@ public class CustomerTicket extends BasicEntity {
 
     public void setPaymentStatus(String paymentStatus) {
         this.paymentStatus = paymentStatus;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public String getPassengerName() {
+        return passengerName;
+    }
+
+    public void setPassengerName(String passengerName) {
+        this.passengerName = passengerName;
+    }
+
+    public String getPassengerTitle() {
+        return passengerTitle;
+    }
+
+    public void setPassengerTitle(String passengerTitle) {
+        this.passengerTitle = passengerTitle;
+    }
+
+    public Integer getLuggage() {
+        return luggage;
+    }
+
+    public void setLuggage(Integer luggage) {
+        this.luggage = luggage;
     }
 }
