@@ -6,9 +6,9 @@ CREATE TABLE city
   id char(32) NOT NULL primary key,
   active char(1) default 'Y',
   create_by varchar(255) default 'SYSTEM',
-  create_date timestamp,
+  create_date timestamp null default null,
   last_update_by varchar(255) default 'SYSTEM',
-  last_update_date timestamp,
+  last_update_date timestamp null default null,
   last_update_millis BIGINT default 0,
   city_code varchar(255),
   city_name varchar(255)
