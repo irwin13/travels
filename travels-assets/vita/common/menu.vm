@@ -1,14 +1,19 @@
         <nav class="navbar navbar-inverse" role="navigation"> 
             <div class="container"> 
                 <div class="navbar-header"> 
-                    <a class="navbar-brand" href="./">Home</a> 
+                    <a class="navbar-brand" href="$appContextUrl">Home</a> 
                 </div> 
                 <div id="navbar" class="navbar-collapse collapse"> 
                     <ul class="nav navbar-nav"> 
-                        <li><a href="./">Customer Login</a></li> 
-                        <li><a href="./">Agent Login</a></li> 
-                        <li><a href="./">About</a></li> 
-                        <li><a href="./">Contact</a></li> 
+                        <li><a href="$appContextUrl/customer/registration">Customer Login</a></li> 
+                        <li><a href="$appContextUrl/subAgentLogin">Sub Agent Login</a></li> 
+                        <li><a href="$appContextUrl/about">About</a></li> 
+                        <li><a href="$appContextUrl/contact">Contact</a></li> 
+                        <li>
+                            <a href="#">
+                                Welcome #if($loginCustomer) $loginCustomer.customerName #else guest #end
+                            </a>
+                        </li>                         
                     </ul> 
                 </div><!--/.nav-collapse --> 
             </div> 

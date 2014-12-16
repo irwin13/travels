@@ -15,7 +15,7 @@
         #parse("/vita/common/menu.vm")          
         <div class="container"> 
             <div>
-	            <form action="./passengerData" class="form-horizontal" id="passengerForm" name="passengerForm" onkeypress="return event.keyCode != 13;" method="post" enctype="application/x-www-form-urlencoded">
+	            <form action="$appContextUrl/passengerData" class="form-horizontal" id="passengerForm" name="passengerForm" onkeypress="return event.keyCode != 13;" method="post" enctype="application/x-www-form-urlencoded">
                     <div class="form-group">
                         <label for="namaLengkap" class="col-sm-3 control-label">Nama Lengkap</label>
                         <div class="col-sm-4">
@@ -48,10 +48,10 @@
                     <div class="form-group">
                         <label for="arrivalDate" class="col-sm-3 control-label">&nbsp;</label>
                         <div class="col-sm-2">
-                            <a href="./" class="btn btn-default">Back</a>
+                            <a href="$appContextUrl" class="btn btn-default">Back</a>
                             <button type="button" class="btn btn-default" onclick="validateForm()">Proses</button>
                         </div>
-                    </div>		  		                                                              
+                    </div>	
                     <div>
                         <h4>Pilihan Tiket</h4>
                         <table class="table table-condensed table-hover table-striped">
@@ -83,7 +83,7 @@
                             #end
                             </tbody>    
                         </table>
-                    </div>                                        
+                    </div>                                                     		                                                              	            
 	            </form>	            
             </div>	           
         </div> <!-- /container --> 

@@ -97,7 +97,7 @@
                 if (errorMsg == "") {
                     jQuery.ajax({
                         type: "GET",
-                        url: './showTickets',
+                        url: '$appContextUrl/showTickets',
                         dataType: "text",
                         data : $('#searchTicketForm').serialize(),
 		                beforeSend : function (xhr) {

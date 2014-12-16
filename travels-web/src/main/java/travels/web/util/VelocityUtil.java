@@ -91,6 +91,7 @@ public class VelocityUtil {
         context.put("velocityUtil", this);
         context.put("assetsUrl", config.getAssetsUrl());
         context.put("modelUrl", config.getModelUrl());
+        context.put("appContextUrl", config.getAppContextUrl());
         return context;
     }
 

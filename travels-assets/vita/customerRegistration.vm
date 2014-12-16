@@ -1,0 +1,100 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+	<head> 
+		<meta charset="utf-8"> 
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<meta name="description" content="travels"> 
+		<meta name="author" content="travels"> 
+	 
+		<title>Passenger Data</title> 
+
+        #parse("/vita/common/header.vm") 
+	</head>         
+    <body role="document"> 
+        #parse("/vita/common/menu.vm")          
+        <div class="container"> 
+            <div>
+	            <form action="$appContextUrl/passengerData" class="form-horizontal" id="passengerForm" name="passengerForm" onkeypress="return event.keyCode != 13;" method="post" enctype="application/x-www-form-urlencoded">
+                    <div class="form-group">
+                        <label for="customerName" class="col-sm-3 control-label">Nama Customer</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="customerName" name="customerName" />
+                        </div>
+                    </div>		  		                                          
+                    <div class="form-group">
+                        <label for="customerPhone" class="col-sm-3 control-label">Telepon</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="customerPhone" name="customerPhone" />
+                        </div>
+                    </div>		  		                                                              
+                    <div class="form-group">
+                        <label for="customerEmail" class="col-sm-3 control-label">Email</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="customerEmail" name="customerEmail" />
+                        </div>
+                    </div>		  		                                                  
+                    <div class="form-group">
+                        <label for="customerPassword" class="col-sm-3 control-label">Password</label>
+                        <div class="col-sm-4">
+                            <input type="password" class="form-control" id="customerPassword" name="customerPassword" />
+                        </div>
+                    </div>		  		                                                                      
+                    <div class="form-group">
+                        <label for="confirmCustomerPassword" class="col-sm-3 control-label">Confirm Password</label>
+                        <div class="col-sm-4">
+                            <input type="password" class="form-control" id="confirmCustomerPassword" name="confirmCustomerPassword" />
+                        </div>
+                    </div>		  		                                                                                          
+                    <div class="form-group">
+                        <label for="arrivalDate" class="col-sm-3 control-label">&nbsp;</label>
+                        <div class="col-sm-2">
+                            <a href="$appContextUrl" class="btn btn-default">Back</a>
+                            <button type="button" class="btn btn-default" onclick="validateForm()">Proses</button>
+                        </div>
+                    </div>		  		                                                              	            
+	            </form>	            
+            </div>	           
+        </div> <!-- /container --> 
+ 
+        #parse("/vita/common/footer.vm")
+                
+        <script type="text/javascript">
+            function validateForm() {
+                var errorMsg = "";
+
+                if ($('#customerName').val() == "") {
+                    errorMsg += "Nama Lengkap belum diisi \n";
+                }
+
+                
+                if ($('#customerPhone').val() == "") {
+                    errorMsg += "Telepon belum diisi \n";
+                }
+
+                if ($('#customerEmail').val() == "") {
+                    errorMsg += "Email belum diisi \n";
+                }
+
+                if ($('#customerPassword').val() == "") {
+                    errorMsg += "Password belum diisi \n";
+                }
+
+                if ($('#confirmCustomerPassword').val() == "") {
+                    errorMsg += "Confirm Password belum diisi \n";
+                }
+
+                if ($('#confirmCustomerPassword').val() != $('#customerPassword').val()) {
+                    errorMsg += "Password dan Confirm Password tidak sama \n";
+                }
+                
+                if (errorMsg == "") {
+                    $('#passengerForm').submit();                    
+                } else {
+                    alert(errorMsg);
+                }
+            }
+                        
+        </script>
+    </body> 
+</html>   

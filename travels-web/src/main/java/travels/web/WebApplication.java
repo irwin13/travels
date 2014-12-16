@@ -12,7 +12,9 @@ import org.slf4j.LoggerFactory;
 import travels.shared.entity.*;
 import travels.web.dao.AirlineTicketDao;
 import travels.web.dao.CityDao;
+import travels.web.dao.CustomerDao;
 import travels.web.dao.CustomerTicketDao;
+import travels.web.resource.CustomerResource;
 import travels.web.resource.CustomerTicketResource;
 import travels.web.resource.HomeResource;
 import travels.web.resource.PassengerDataResource;
@@ -32,8 +34,12 @@ public class WebApplication extends Application<WebConfiguration> {
     }
 
     private final HibernateBundle<WebConfiguration> hibernate = new HibernateBundle<WebConfiguration>
-            (City.class, CustomerTicket.class, Airport.class,
-                    Airline.class, AirlineTicket.class) {
+            (City.class,
+                    CustomerTicket.class,
+                    Airport.class,
+                    Airline.class,
+                    AirlineTicket.class,
+                    Customer.class) {
 
         @Override
         public DataSourceFactory getDataSourceFactory(WebConfiguration configuration) {
@@ -70,15 +76,18 @@ public class WebApplication extends Application<WebConfiguration> {
         final CityDao cityDao = new CityDao(hibernate.getSessionFactory());
         final AirlineTicketDao airlineTicketDao = new AirlineTicketDao(hibernate.getSessionFactory());
         final CustomerTicketDao customerTicketDao = new CustomerTicketDao(hibernate.getSessionFactory());
+        final CustomerDao customerDao = new CustomerDao(hibernate.getSessionFactory());
 
         HomeResource homeResource = new HomeResource(config, cityDao, airlineTicketDao);
         PassengerDataResource passengerDataResource = new PassengerDataResource(config, customerTicketDao,
                 airlineTicketDao);
         CustomerTicketResource customerTicketResource = new CustomerTicketResource(config, customerTicketDao);
+        CustomerResource customerResource = new CustomerResource(customerDao, config);
 
         environment.jersey().register(homeResource);
         environment.jersey().register(passengerDataResource);
         environment.jersey().register(customerTicketResource);
+        environment.jersey().register(customerResource);
 
     }
 }
